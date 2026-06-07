@@ -17,7 +17,7 @@ def encode(b: bytes) -> bytes:
     result = bytearray()
 
     for i in range(0, len(b), 4):
-        chunk = b[i:i + 4]
+        chunk = b[i : i + 4]
         pad = 4 - len(chunk)
         chunk = chunk + b"\x00" * pad
 
@@ -29,7 +29,7 @@ def encode(b: bytes) -> bytes:
             value //= 85
         digits.reverse()
 
-        result.extend(digits[:5 - pad])
+        result.extend(digits[: 5 - pad])
 
     return bytes(result)
 
@@ -46,7 +46,7 @@ def decode(b: bytes) -> bytes:
     result = bytearray()
 
     for i in range(0, len(b), 5):
-        chunk = b[i:i + 5]
+        chunk = b[i : i + 5]
         pad = 5 - len(chunk)
         chunk = chunk + bytes([ALPHABET[84]] * pad)
 
@@ -54,6 +54,6 @@ def decode(b: bytes) -> bytes:
         for byte in chunk:
             value = value * 85 + DECODE_MAP[byte]
 
-        result.extend(value.to_bytes(4, "big")[:4 - pad])
+        result.extend(value.to_bytes(4, "big")[: 4 - pad])
 
     return bytes(result)
