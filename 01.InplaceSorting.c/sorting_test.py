@@ -30,8 +30,6 @@ def test_builtin_sort_array(fatal_array):
     assert is_sorted
 
 
-# ========== НОВЫЕ ТЕСТЫ ДЛЯ ПУЗЫРЬКОВОЙ И БЫСТРОЙ СОРТИРОВКИ ==========
-
 @pytest.fixture(scope="module")
 def random_test_array():
     """Create shuffled array for testing"""
